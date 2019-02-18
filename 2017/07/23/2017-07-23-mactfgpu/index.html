@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>黑苹果 Hackintosh macOS Sierra 10.12.6 安装 CUDA cuDNN Tensorflow-gpu | Hexo</title>
+  <meta name="description" content="WordPress格式兼容稍微有点问题，看不懂的可以拉到最下面看图片 下载安装Xcode在商店下载Xcode，完成后打开，等待安装组件，直到进入新建项目的页面   注：此步骤目的在于安装xcode command line tool，在后面步骤中已经重复安装低版本，可以先行跳过此步骤，理论没有问题，但我无法重装验证，建议先行跳过，如若因此出错可以再安装  安装HomeBrew及组件在HomeBre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="黑苹果 Hackintosh macOS Sierra 10.12.6 安装 CUDA cuDNN Tensorflow-gpu">
+<meta property="og:url" content="http://yoursite.com/2017/07/23/2017-07-23-mactfgpu/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="WordPress格式兼容稍微有点问题，看不懂的可以拉到最下面看图片 下载安装Xcode在商店下载Xcode，完成后打开，等待安装组件，直到进入新建项目的页面   注：此步骤目的在于安装xcode command line tool，在后面步骤中已经重复安装低版本，可以先行跳过此步骤，理论没有问题，但我无法重装验证，建议先行跳过，如若因此出错可以再安装  安装HomeBrew及组件在HomeBre">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://35.201.213.226/wp-content/uploads/2017/07/下载安装Xcode.jpg">
+<meta property="og:updated_time" content="2019-02-18T02:25:37.244Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="黑苹果 Hackintosh macOS Sierra 10.12.6 安装 CUDA cuDNN Tensorflow-gpu">
+<meta name="twitter:description" content="WordPress格式兼容稍微有点问题，看不懂的可以拉到最下面看图片 下载安装Xcode在商店下载Xcode，完成后打开，等待安装组件，直到进入新建项目的页面   注：此步骤目的在于安装xcode command line tool，在后面步骤中已经重复安装低版本，可以先行跳过此步骤，理论没有问题，但我无法重装验证，建议先行跳过，如若因此出错可以再安装  安装HomeBrew及组件在HomeBre">
+<meta name="twitter:image" content="http://35.201.213.226/wp-content/uploads/2017/07/下载安装Xcode.jpg">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2017/07/23/2017-07-23-mactfgpu/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-blue" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">CCJ</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech="">
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope="" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope="" itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流讨论!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Tensorflow/">Tensorflow</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/网络配置/">网络配置</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/差分隐私/">差分隐私</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络配置/">网络配置</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/考研/">考研</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+
+    
+      
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/网络配置/">网络配置</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/12/16/2018-12-16-e58c97e982aee68993e980a0e5858de799bbe5bd95e5aebde5b8a6padavane8b7afe794b1e599a8/" class="title">北邮打造免登录宽带Padavan路由器</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-12-15T21:39:42.000Z" itemprop="datePublished">2018-12-16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/网络配置/">网络配置</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/11/28/r720-hackintosh/" class="title">联想R720 黑苹果13.4安装实录</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-11-27T21:39:42.000Z" itemprop="datePublished">2018-11-28</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/差分隐私/">差分隐私</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/06/30/2018-06-30-2016-ccs-heavy-hitter-estimation-over-set-valued-data-with-local-differential-privacye8aebae69687e7ac94e8aeb0/" class="title">LDPMiner应用于Heavy hitter的挖掘-论文笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-06-30T01:15:39.000Z" itemprop="datePublished">2018-06-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/考研/">考研</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/04/08/2018-04-08-2018e5b9b4e58c97e982aee7bd91e7a094e999a2e69cbae8af95e79c9fe9a298/" class="title">2018年北邮网研院机试真题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-04-07T19:40:19.000Z" itemprop="datePublished">2018-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Python/">Python</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Python/Tensorflow/">Tensorflow</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/07/23/2017-07-23-mactfgpu/" class="title">黑苹果 Hackintosh macOS Sierra 10.12.6 安装 CUDA cuDNN Tensorflow-gpu</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-07-22T17:19:21.000Z" itemprop="datePublished">2017-07-23</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-2017-07-23-mactfgpu" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      黑苹果 Hackintosh macOS Sierra 10.12.6 安装 CUDA cuDNN Tensorflow-gpu
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2017/07/23/2017-07-23-mactfgpu/" class="article-date">
+	  <time datetime="2017-07-22T17:19:21.000Z" itemprop="datePublished">2017-07-23</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/Python/">Python</a>►<a class="article-category-link" href="/categories/Python/Tensorflow/">Tensorflow</a>
+  </span>
+
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2017/07/23/2017-07-23-mactfgpu/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>WordPress格式兼容稍微有点问题，看不懂的可以拉到最下面看图片</p>
+<h1 id="下载安装Xcode"><a href="#下载安装Xcode" class="headerlink" title="下载安装Xcode"></a>下载安装Xcode</h1><p>在商店下载Xcode，完成后打开，等待安装组件，直到进入新建项目的页面  </p>
+<p>注：此步骤目的在于安装xcode command line tool，在后面步骤中已经重复安装低版本，可以先行跳过此步骤，理论没有问题，但我无法重装验证，建议先行跳过，如若因此出错可以再安装 </p>
+<h1 id="安装HomeBrew及组件"><a href="#安装HomeBrew及组件" class="headerlink" title="安装HomeBrew及组件"></a>安装HomeBrew及组件</h1><p>在<a href="https://brew.sh/" target="_blank" rel="noopener">HomeBrew官网</a>复制命令直接安装即可  </p>
+<p><code>/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</code></p>
+<h2 id="安装组件"><a href="#安装组件" class="headerlink" title="安装组件"></a>安装组件</h2><p>使用如下命令分别安装三个组件</p>
+<pre><code>&lt;code&gt;brew install bazel
+brew install swig
+brew install coreutils
+&lt;/code&gt;
+</code></pre><h1 id="安装CUDA"><a href="#安装CUDA" class="headerlink" title="安装CUDA"></a>安装CUDA</h1><p>在官网下载对应版本的<a href="http://www.nvidia.com/object/mac-driver-archive.html" target="_blank" rel="noopener">CUDA Driver</a>、<a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="noopener">CUDA Toolkit</a>，点击安装即可</p>
+<h1 id="配置CUDA环境变量"><a href="#配置CUDA环境变量" class="headerlink" title="配置CUDA环境变量"></a>配置CUDA环境变量</h1><p>使用命令<code>vi ~/.bash_profile</code>编辑环境变量，将以下三行加在末尾，保存然后退出</p>
+<pre><code>&lt;code&gt;export CUDA_HOME=&quot;/usr/local/cuda&quot;
+export DYLD_LIBRARY_PATH=&quot;$DYLD_LIBRARY_PATH:$CUDA_HOME/lib&quot;
+export PATH=&quot;$CUDA_HOME/bin:$PATH&quot;
+&lt;/code&gt;
+</code></pre><p>使用命令<code>. ~/.bash_profile</code>重启bash_profile  </p>
+<p>使用如下命令验证是否安装成功</p>
+<pre><code>&lt;code&gt;cd /usr/local/cuda/samples
+sudo make -C 1_Utilities/deviceQuery
+./bin/x86_64/darwin/release/deviceQuery
+&lt;/code&gt;
+</code></pre><p>在此处遇到问题</p>
+<pre><code>&lt;code&gt;xcode-select: error: tool &apos;xcodebuild&apos; requires Xcode, but active developer directory &apos;/Library/Developer/CommandLineTools&apos; is a command line tools instance
+expr: syntax error
+/Developer/NVIDIA/CUDA-8.0/bin/nvcc -ccbin g++ -I../../common/inc  -m64  -Xcompiler -arch -Xcompiler x86_64  -gencode arch=compute_20,code=sm_20 -gencode arch=compute_30,code=sm_30 -gencode arch=compute_35,code=sm_35 -gencode arch=compute_37,code=sm_37 -gencode arch=compute_50,code=sm_50 -gencode arch=compute_52,code=sm_52 -gencode arch=compute_60,code=sm_60 -gencode arch=compute_60,code=compute_60 -o deviceQuery.o -c deviceQuery.cpp
+nvcc warning : The &apos;compute_20&apos;, &apos;sm_20&apos;, and &apos;sm_21&apos; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+nvcc fatal   : The version (&apos;80100&apos;) of the host compiler (&apos;Apple clang&apos;) is not supported
+make: *** [deviceQuery.o] Error 1
+&lt;/code&gt;
+</code></pre><p>首先解决第一个问题，需要安装xcode Command line Tool，CUDA不支持cmd tool 8.0以上版本，所以下载<a href="https://developer.apple.com/download/more/" target="_blank" rel="noopener">Command_Line_Tools_OS_X_10.11_for_Xcode_7.3</a>，此页面需要Apple ID登陆，但不需要注册开发者，登陆后重新打开页面，在列表中选择即可。  </p>
+<p>下载安装完成后，使用如下命令切换cmd tool</p>
+<pre><code>&lt;code&gt;sudo xcode-select --switch /Library/Developer/CommandLineTools
+&lt;/code&gt;
+</code></pre><p>再使用命令<code>/usr/bin/cc --version</code>查看cmd tool版本，显示如下为安装正确</p>
+<pre><code>&lt;code&gt;Apple LLVM version 7.3.0 (clang-703.0.29)
+...
+&lt;/code&gt;
+</code></pre><p>此时再进行编译，通过，用第三条命令执行程序，最后输出  </p>
+<p><code>Result = PASS</code>  </p>
+<p>代表CUDA配置完成，也可以在log中查看显卡型号是否吻合进一步判断。</p>
+<h1 id="安装cuDNN5-1"><a href="#安装cuDNN5-1" class="headerlink" title="安装cuDNN5.1"></a>安装cuDNN5.1</h1><p>登陆英伟达开发者账号，在链接<a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="noopener">https://developer.nvidia.com/rdp/cudnn-download</a>下载cuDNN5.1 for CUDA 8.0 Library for OS X，下载后解压并进入该目录，执行如下操作</p>
+<pre><code>&lt;code&gt;sudo mv include/cudnn.h /Developer/NVIDIA/CUDA-8.0/include/
+sudo mv lib/libcudnn* /Developer/NVIDIA/CUDA-8.0/lib
+sudo ln -s /Developer/NVIDIA/CUDA-8.0/lib/libcudnn* /usr/local/cuda/lib/
+&lt;/code&gt;
+</code></pre><h1 id="安装Anaconda与Python环境"><a href="#安装Anaconda与Python环境" class="headerlink" title="安装Anaconda与Python环境"></a>安装Anaconda与Python环境</h1><p>在<a href="https://www.continuum.io/downloads" target="_blank" rel="noopener">Anaconda官网</a>下载macOS版本的Ananconda，并安装。  </p>
+<p>打开Anaconda的图形界面，新建一个环境，命名为tensorflow选择Python 版本为3.6。  </p>
+<p>新建完成后在环境列表选中该环境，点击小三角，选择open terminal  </p>
+<p>使用如下命令安装tensorflow 的 GPU 版本</p>
+<pre><code>&lt;code&gt;sudo pip install --upgrade https://storage.googleapis.com/tensorflow/mac/gpu/tensorflow_gpu-1.0.1-py3-none-any.whl
+&lt;/code&gt;
+</code></pre><p>安装成功后使用python命令进入python命令行，输入<code>import tensorflow as tf</code>，提示错误</p>
+<pre><code>&lt;code&gt;I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcublas.8.0.dylib locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcudnn.5.dylib locally
+I tensorflow/stream_executor/dso_loader.cc:135] successfully opened CUDA library libcufft.8.0.dylib locally
+Segmentation fault: 11
+&lt;/code&gt;
+</code></pre><p>此时打开目录 /usr/local/cuda/lib 将 libcuda.dylib 重命名为 libcuda.1.dylib   </p>
+<p>重新进入 python命令行，执行<code>import tensorflow as tf</code>，已经正常。继续执行以下两句</p>
+<pre><code>&lt;code&gt;hello = tf.constant(&apos;Hello, TensorFlow!&apos;)
+sess = tf.Session()
+&lt;/code&gt;
+</code></pre><p>输出<code>b&#39;Hello, TensorFlow!&#39;</code>，说明tensorflow安装成功</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://docs.nvidia.com/cuda/cuda-installation-guide-mac-os-x/index.html#mac-os-version" target="_blank" rel="noopener">http://docs.nvidia.com/cuda/cuda-installation-guide-mac-os-x/index.html#mac-os-version</a>  </p>
+<p><a href="http://www.liuxiao.org/2017/02/tensorflow-mac-os-%E4%B8%8A-tensorflow-%E5%AE%89%E8%A3%85%EF%BC%88%E6%94%AF%E6%8C%81-cuda%EF%BC%89/" target="_blank" rel="noopener">http://www.liuxiao.org/2017/02/tensorflow-mac-os-%E4%B8%8A-tensorflow-%E5%AE%89%E8%A3%85%EF%BC%88%E6%94%AF%E6%8C%81-cuda%EF%BC%89/</a>  </p>
+<p><a href="https://github.com/tensorflow/tensorflow/issues/3263" target="_blank" rel="noopener">Segmentation fault: 11 解决</a></p>
+<p><img src="http://35.201.213.226/wp-content/uploads/2017/07/下载安装Xcode.jpg" alt=""></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2017/07/23/2017-07-23-mactfgpu/" title="黑苹果 Hackintosh macOS Sierra 10.12.6 安装 CUDA cuDNN Tensorflow-gpu" target="_blank" rel="external">http://yoursite.com/2017/07/23/2017-07-23-mactfgpu/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">CCJ</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom="">
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/04/08/2018-04-08-2018e5b9b4e58c97e982aee7bd91e7a094e999a2e69cbae8af95e79c9fe9a298/" title="2018年北邮网研院机试真题"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2017/06/04/2017-06-04-bcm/" title="Ubuntu 17.04 一条命令安装 Broadcom 无线网卡驱动"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan">
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan">
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

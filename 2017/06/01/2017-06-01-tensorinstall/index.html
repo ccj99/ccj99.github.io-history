@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>Ubuntu 17.04 下安装 TensorFlow 1.1 gpu 全记录 | Hexo</title>
+  <meta name="description" content="安装Nvidia显卡驱动 在Nvidia官网找到对应自己系统和显卡版本的.run安装程序并下载   卸载nouveaus显卡驱动：执行命令mv /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nouveau/nouveau.ko /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nou">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu 17.04 下安装 TensorFlow 1.1 gpu 全记录">
+<meta property="og:url" content="http://yoursite.com/2017/06/01/2017-06-01-tensorinstall/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="安装Nvidia显卡驱动 在Nvidia官网找到对应自己系统和显卡版本的.run安装程序并下载   卸载nouveaus显卡驱动：执行命令mv /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nouveau/nouveau.ko /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nou">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-18T02:25:41.178Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Ubuntu 17.04 下安装 TensorFlow 1.1 gpu 全记录">
+<meta name="twitter:description" content="安装Nvidia显卡驱动 在Nvidia官网找到对应自己系统和显卡版本的.run安装程序并下载   卸载nouveaus显卡驱动：执行命令mv /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nouveau/nouveau.ko /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nou">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2017/06/01/2017-06-01-tensorinstall/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-blue" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">CCJ</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech="">
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope="" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope="" itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流讨论!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Tensorflow/">Tensorflow</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/网络配置/">网络配置</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/差分隐私/">差分隐私</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络配置/">网络配置</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/考研/">考研</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+
+    
+      
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/网络配置/">网络配置</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/12/16/2018-12-16-e58c97e982aee68993e980a0e5858de799bbe5bd95e5aebde5b8a6padavane8b7afe794b1e599a8/" class="title">北邮打造免登录宽带Padavan路由器</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-12-15T21:39:42.000Z" itemprop="datePublished">2018-12-16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/网络配置/">网络配置</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/11/28/r720-hackintosh/" class="title">联想R720 黑苹果13.4安装实录</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-11-27T21:39:42.000Z" itemprop="datePublished">2018-11-28</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/差分隐私/">差分隐私</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/06/30/2018-06-30-2016-ccs-heavy-hitter-estimation-over-set-valued-data-with-local-differential-privacye8aebae69687e7ac94e8aeb0/" class="title">LDPMiner应用于Heavy hitter的挖掘-论文笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-06-30T01:15:39.000Z" itemprop="datePublished">2018-06-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/考研/">考研</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/04/08/2018-04-08-2018e5b9b4e58c97e982aee7bd91e7a094e999a2e69cbae8af95e79c9fe9a298/" class="title">2018年北邮网研院机试真题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-04-07T19:40:19.000Z" itemprop="datePublished">2018-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Python/">Python</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Python/Tensorflow/">Tensorflow</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/07/23/2017-07-23-mactfgpu/" class="title">黑苹果 Hackintosh macOS Sierra 10.12.6 安装 CUDA cuDNN Tensorflow-gpu</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-07-22T17:19:21.000Z" itemprop="datePublished">2017-07-23</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-2017-06-01-tensorinstall" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu 17.04 下安装 TensorFlow 1.1 gpu 全记录
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2017/06/01/2017-06-01-tensorinstall/" class="article-date">
+	  <time datetime="2017-05-31T19:45:04.000Z" itemprop="datePublished">2017-06-01</time>
+	</a>
+</span>
+        
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2017/06/01/2017-06-01-tensorinstall/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="安装Nvidia显卡驱动"><a href="#安装Nvidia显卡驱动" class="headerlink" title="安装Nvidia显卡驱动"></a>安装Nvidia显卡驱动</h1><ul>
+<li>在Nvidia官网找到对应自己系统和显卡版本的.run安装程序并下载</li>
+</ul>
+<ul>
+<li>卸载nouveaus显卡驱动：<br>执行命令<code>mv /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nouveau/nouveau.ko /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nouveau/nouveau.ko.org</code>完成显卡驱动的备份和删除，再重新加载一下 <code>update-initramfs -u</code>。成功后重启会发现分辨率变得异常等无显卡驱动的常见情形</li>
+</ul>
+<ul>
+<li>nouveaus显卡驱动卸载完成后，Ctrl+Alt+F1进入命令行模式并登陆root账户</li>
+</ul>
+<ul>
+<li>关闭lightdm，使用命令 <code>service lightdm stop</code> 关闭，使用命令 <code>service lightdm start</code> 开启</li>
+</ul>
+<ul>
+<li>找到你下载的显卡驱动执行安装程序 <code>./xxx.run</code>,安装过程中记得选Accept等的选项，留神别选错了。安装完成后重启，进入图形界面检查显卡驱动是否安装成功，也可以使用命令 <code>nvidia-smi</code> 查看显卡信息</li>
+</ul>
+<h1 id="安装CUDA"><a href="#安装CUDA" class="headerlink" title="安装CUDA"></a>安装CUDA</h1><ul>
+<li>我通过命令 <code>sudo apt-get install cuda</code> 执行安装成功，网络环境好的也可以使用这个方法。</li>
+</ul>
+<ul>
+<li>官网下载CUDA对应的版本：<a href="https://developer.nvidia.com/cuda-downloads" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-downloads</a>，下载后得到对应的deb 或者其他类型的安装包后直接执行安装即可。我在 Ubuntu 17.04 下 deb 安装软件失败了几次，原因未知，多以我直接网络安装搞定了。</li>
+</ul>
+<ul>
+<li>使用本地安装的需要配置环境变量，使用命令 <code>sudo vim  ~/.bashrc</code> 编辑文档，按i键进入编辑模式，在文件末尾加上两行： <code>export PATH=/usr/local/cuda-8.0/bin:$PATH</code> <code>export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH</code> 然后使用命令 <code>source ~/.bashrc</code> 使环境变量生效</li>
+</ul>
+<ul>
+<li>测试CUDA是否安装成功： <code>nvcc --version</code> 输出nvcc的详细信息，若失败，使用<code>sudo /usr/local/cuda-8.0/bin/uninstall_cuda_8.0.pl</code> 命令卸载CUDA（<strong>命令中的安装路径请自行更改为自己的安装目录</strong>）</li>
+</ul>
+<h1 id="安装CuDNN"><a href="#安装CuDNN" class="headerlink" title="安装CuDNN"></a>安装CuDNN</h1><ul>
+<li>进入网站 <a href="https://developer.nvidia.com/cudnn" target="_blank" rel="noopener">https://developer.nvidia.com/cudnn</a> 注册为 Nvidia 开发者并下载对应版本的 CuDNN ，最新的 TensorFlow 不支持 CuDNN 6，所以请选择 CuDNN 5.1 下载并解压。</li>
+</ul>
+<ul>
+<li>CuDNN的安装相对简单，本质上就是把下载的 lib64 和 include 整个文件夹内容拷贝到 /usr/local/cuda/lib64/ 和 /usr/local/cuda/include/ 文件夹下，可分别使用命令： <code>sudo cp lib64/* /usr/local/cuda/lib64/</code> <code>sudo cp include/* usr/local/cuda/include/</code> ， 但此时终端应位于下载的 CUDA 的解压目录下。</li>
+</ul>
+<h1 id="安装Anaconda（可选）"><a href="#安装Anaconda（可选）" class="headerlink" title="安装Anaconda（可选）"></a>安装Anaconda（可选）</h1><ul>
+<li>可使用系统默认 Python 环境进行 TensorFlow 安装和开发，在这里我选择 使用Anaconda ，优点是可以创建多个互不干扰的虚拟环境，对于新手来说如果出现无法解决的错误，可以新建环境从头开始，而不用重装系统。</li>
+</ul>
+<ul>
+<li>前往 Anaconda 官网下载器安装包： <a href="https://www.continuum.io/downloads#linux" target="_blank" rel="noopener">https://www.continuum.io/downloads#linux</a>，随意选择 3.6 或者 2.7 版本。下载后执行下载的 .sh 安装文件，即可完成安装。</li>
+</ul>
+<ul>
+<li>在安装过程中有选择是否将 Anaconda 添加到系统 Path 变量里，请选择是。</li>
+</ul>
+<ul>
+<li>安装完成后使用命令 <code>source activate root</code> 进入默认的root环境。</li>
+</ul>
+<ul>
+<li>我们创建新的环境： <code>conda create -n tensorflow python=3.6</code> 其中 tensorflow 为虚拟环境名字，可以自定义，Python 版本也可以随意选择 TensorFlow 目前支持的版本。创建完成后同样使用命令 <code>source activate tensorflow</code> 进入新安装的环境，使用命令 <code>pip install --update https://</code> 安装 TensorFlow GPU 版本，此过程会同时下载其依赖库。</li>
+</ul>
+<ul>
+<li>安装完成后使用代码：<br><code>import tensorflow as tf
+hello = tf.constant(&#39;Hello, TensorFlow!&#39;)
+sess = tf.Session()
+print sess.run(hello)</code><br>验证安装是否成功，在 <code>sess = tf.Session()</code> 执行时会输出含有显卡信息的语句，最后会输出文字 ‘Hello TensorFlow’ 安装成功</li>
+</ul>
+<h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>以上就是我在 Ubuntu 17.04 上安装 TensorFlow GPU 版的全过程，请灵活使用提供的代码，尤其是一些涉及文件目录的地方。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2017/06/01/2017-06-01-tensorinstall/" title="Ubuntu 17.04 下安装 TensorFlow 1.1 gpu 全记录" target="_blank" rel="external">http://yoursite.com/2017/06/01/2017-06-01-tensorinstall/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">CCJ</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom="">
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2017/06/04/2017-06-04-bcm/" title="Ubuntu 17.04 一条命令安装 Broadcom 无线网卡驱动"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2017/05/31/2017-05-31-ssqt5/" title="Ubuntu 系统下 shadowsocks qt5 的安装及使用"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan">
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan">
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

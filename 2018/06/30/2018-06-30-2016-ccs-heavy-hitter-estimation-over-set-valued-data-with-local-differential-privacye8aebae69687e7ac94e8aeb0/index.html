@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>LDPMiner应用于Heavy hitter的挖掘-论文笔记 | Hexo</title>
+  <meta name="description" content="论文名称：2016-CCS-Heavy Hitter Estimation over Set-Valued Data with Local Differential PrivacyLDPMiner应用于Heavy hitter的挖掘现存LDP解决方法LDP解决方法需要包括：用户侧的数据干扰机制、数据收集者执行的用来在收到的有噪数据中计算统计信息的算法。用户侧的数据干扰机制主要需要满足差分隐私，大多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LDPMiner应用于Heavy hitter的挖掘-论文笔记">
+<meta property="og:url" content="http://yoursite.com/2018/06/30/2018-06-30-2016-ccs-heavy-hitter-estimation-over-set-valued-data-with-local-differential-privacye8aebae69687e7ac94e8aeb0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="论文名称：2016-CCS-Heavy Hitter Estimation over Set-Valued Data with Local Differential PrivacyLDPMiner应用于Heavy hitter的挖掘现存LDP解决方法LDP解决方法需要包括：用户侧的数据干扰机制、数据收集者执行的用来在收到的有噪数据中计算统计信息的算法。用户侧的数据干扰机制主要需要满足差分隐私，大多">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-18T02:25:33.602Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LDPMiner应用于Heavy hitter的挖掘-论文笔记">
+<meta name="twitter:description" content="论文名称：2016-CCS-Heavy Hitter Estimation over Set-Valued Data with Local Differential PrivacyLDPMiner应用于Heavy hitter的挖掘现存LDP解决方法LDP解决方法需要包括：用户侧的数据干扰机制、数据收集者执行的用来在收到的有噪数据中计算统计信息的算法。用户侧的数据干扰机制主要需要满足差分隐私，大多">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2018/06/30/2018-06-30-2016-ccs-heavy-hitter-estimation-over-set-valued-data-with-local-differential-privacye8aebae69687e7ac94e8aeb0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-blue" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">CCJ</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech="">
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope="" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope="" itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流讨论!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Tensorflow/">Tensorflow</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/网络配置/">网络配置</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/差分隐私/">差分隐私</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络配置/">网络配置</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/考研/">考研</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+
+    
+      
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/网络配置/">网络配置</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/12/16/2018-12-16-e58c97e982aee68993e980a0e5858de799bbe5bd95e5aebde5b8a6padavane8b7afe794b1e599a8/" class="title">北邮打造免登录宽带Padavan路由器</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-12-15T21:39:42.000Z" itemprop="datePublished">2018-12-16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/网络配置/">网络配置</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/11/28/r720-hackintosh/" class="title">联想R720 黑苹果13.4安装实录</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-11-27T21:39:42.000Z" itemprop="datePublished">2018-11-28</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/差分隐私/">差分隐私</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/06/30/2018-06-30-2016-ccs-heavy-hitter-estimation-over-set-valued-data-with-local-differential-privacye8aebae69687e7ac94e8aeb0/" class="title">LDPMiner应用于Heavy hitter的挖掘-论文笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-06-30T01:15:39.000Z" itemprop="datePublished">2018-06-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/考研/">考研</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/04/08/2018-04-08-2018e5b9b4e58c97e982aee7bd91e7a094e999a2e69cbae8af95e79c9fe9a298/" class="title">2018年北邮网研院机试真题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-04-07T19:40:19.000Z" itemprop="datePublished">2018-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Python/">Python</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Python/Tensorflow/">Tensorflow</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/07/23/2017-07-23-mactfgpu/" class="title">黑苹果 Hackintosh macOS Sierra 10.12.6 安装 CUDA cuDNN Tensorflow-gpu</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-07-22T17:19:21.000Z" itemprop="datePublished">2017-07-23</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-2018-06-30-2016-ccs-heavy-hitter-estimation-over-set-valued-data-with-local-differential-privacye8aebae69687e7ac94e8aeb0" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      LDPMiner应用于Heavy hitter的挖掘-论文笔记
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/06/30/2018-06-30-2016-ccs-heavy-hitter-estimation-over-set-valued-data-with-local-differential-privacye8aebae69687e7ac94e8aeb0/" class="article-date">
+	  <time datetime="2018-06-30T01:15:39.000Z" itemprop="datePublished">2018-06-30</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/差分隐私/">差分隐私</a>
+  </span>
+
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/06/30/2018-06-30-2016-ccs-heavy-hitter-estimation-over-set-valued-data-with-local-differential-privacye8aebae69687e7ac94e8aeb0/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="论文名称：2016-CCS-Heavy-Hitter-Estimation-over-Set-Valued-Data-with-Local-Differential-Privacy"><a href="#论文名称：2016-CCS-Heavy-Hitter-Estimation-over-Set-Valued-Data-with-Local-Differential-Privacy" class="headerlink" title="论文名称：2016-CCS-Heavy Hitter Estimation over Set-Valued Data with Local Differential Privacy"></a>论文名称：2016-CCS-Heavy Hitter Estimation over Set-Valued Data with Local Differential Privacy</h1><h1 id="LDPMiner应用于Heavy-hitter的挖掘"><a href="#LDPMiner应用于Heavy-hitter的挖掘" class="headerlink" title="LDPMiner应用于Heavy hitter的挖掘"></a>LDPMiner应用于Heavy hitter的挖掘</h1><h2 id="现存LDP解决方法"><a href="#现存LDP解决方法" class="headerlink" title="现存LDP解决方法"></a>现存LDP解决方法</h2><p>LDP解决方法需要包括：用户侧的数据干扰机制、数据收集者执行的用来在收到的有噪数据中计算统计信息的算法。用户侧的数据干扰机制主要需要满足差分隐私，大多数差分隐私机制应当被中心数据持有者来运行，所以无法应用于LDP。另外，传统的差分隐私机制也无法解决LDP的第二个需求。</p>
+<h2 id="Randomized-Response（随机响应？）"><a href="#Randomized-Response（随机响应？）" class="headerlink" title="Randomized Response（随机响应？）"></a>Randomized Response（随机响应？）</h2><p>RR询问用户一个二进制答案的敏感问题，目的是每个用户带着似是而非的可否任性回答这个问题、数据收集者对问题的答案计算出无偏估计。为了达到目的，每个用户在回答问题之前抛一次硬币，正面朝上就正确回答，反面朝上就错误回答。此时数据中的正确率是有偏的，乘以一个与p有关的系数就得到无偏估计。缺点是只能是二进制问题。</p>
+<h2 id="RAPPOR（Randomized-Aggregatable-Privacy-Preserving-Ordinal-Response）"><a href="#RAPPOR（Randomized-Aggregatable-Privacy-Preserving-Ordinal-Response）" class="headerlink" title="RAPPOR（Randomized Aggregatable Privacy-Preserving Ordinal Response）"></a>RAPPOR（Randomized Aggregatable Privacy-Preserving Ordinal Response）</h2><p>把RR扩展到更加复杂的数据类型。RAPPOR解决的相关问题是对绝对数据的频率估计。具体点说，设n为用户总数，每个用户ui拥有包含d个可能取值的域中的一个条目vi，数据收集者估计d个条目的频率，在RAPPOR中用户ui使用一个d维的一热向量来表示vi，接下来，对于d比特中的每一位，ui分别使用RR，数据收集者收集到d比特的有偏数据之后，再使用RR计算出d个条目的无偏估计。</p>
+<p>RAPPOR使用<em>敏感度</em>的概念来确定p的值，具体来说就是给定一个任意的函数f，给出敏感度的定义。D和D’是两个任意的不同条目f(D)是d比特向量的正确值，由于它是一热向量，所以f(D)和f(D’)最多有两位有区别，因此f的敏感度是2，一致地，证明RAPPOR可以在p去这个值的时候确保差分隐私。</p>
+<p>RAPPOR的一个主要缺点是她的高通信负载，每个用户都要传输d比特，当d很大时花费很高。而且它最初设计用于单个属性，并不适合。</p>
+<h2 id="SH（Succinct-histogram，简明直方图？）"><a href="#SH（Succinct-histogram，简明直方图？）" class="headerlink" title="SH（Succinct histogram，简明直方图？）"></a>SH（Succinct histogram，简明直方图？）</h2><p>SH解决了RAPPOR的重通信负担，具体来讲SH中数据收集者仅上报相对高频率的条目值（给定门限），此外的条目频率视为0。SH基于两个核心思想：第一，SH中的每个用户只发送1个随机选中的比特而不是d个比特，当dn时仍然成立，SH应用随机映射来减少数据的维度，具体来说，SH生成一个d*m的矩阵，矩阵中每个元素都独立随机地取为±1/sqrt(m)，将d维向量转为m维向量，接下来应用第一个思想，随机选一个比特然后使用RR。具体来说、[3]证明一般图表与预测heavy hitter 有着相同的逐渐降低的预测错误。</p>
+<h1 id="LDPMiner"><a href="#LDPMiner" class="headerlink" title="LDPMiner"></a>LDPMiner</h1><h2 id="两个阶段框架"><a href="#两个阶段框架" class="headerlink" title="两个阶段框架"></a>两个阶段框架</h2><p>导致高通信负载和结果噪声的原因都是每个用户要处理l个条目。两阶段框架的主要思想是在第一阶段先过滤条目并选出k max个heavy hitters的候选，在第二个阶段集中精力在对这些候选的频率估计上。k往往比l小得多。具体来说，LDPMiner将隐私预算分为两部分，分别分给第一阶段和第二阶段，根据顺序组合定理、这整个过程都满足 e-LDP。第一阶段在e1预算下将l个条目上报，数据收集者计算出候选的k max个条目并返回。第二阶段就是对原始问题来说将d个条目减少为k max个，换句话说，最终结果的heavy hitter 一定出自候选，LDPMiner不计算候选意外条目的频率。其次，每个用户都会在第一阶段传输数据，两个结算的信息之间会有重叠，可以利用这些重叠来提升准确度。  </p>
+<p>LDPMiner足够灵活，可以通过参数设置来取消一个阶段。</p>
+<h2 id="Building-Blocks（基本成分？）"><a href="#Building-Blocks（基本成分？）" class="headerlink" title="Building Blocks（基本成分？）"></a>Building Blocks（基本成分？）</h2><p>在两个阶段每个用户都需要上传数据，简单思路中正是由于每个用户都上传所有数据导致效率低下，所以LDPMiner的一个核心思想就是：每个用户不需要发送所有数据条目，随机选择一个发送就好。这样会导致随机的取样偏差，为了中和这个偏差，使用估计的频率乘以l，这样就会得到正确的无偏估计，这种方法称为抽样随机数（sampling randomizer），</p>
+<h2 id="LDPMiner阶段一设计"><a href="#LDPMiner阶段一设计" class="headerlink" title="LDPMiner阶段一设计"></a>LDPMiner阶段一设计</h2><p>阶段一选用SH以获得低通信代价，在samplingSH算法中使用JL生成随机映射矩阵φ，JL要求φ的列XXXX，</p>
+<h2 id="LDPMiner阶段二设计"><a href="#LDPMiner阶段二设计" class="headerlink" title="LDPMiner阶段二设计"></a>LDPMiner阶段二设计</h2><p>阶段二可以使用RAPPOR也可以使用SH，相应的分别称为LDP-RAPPOR和LDPMiner-SH。阶段二中的数据整理依然需要非常小心，比如数据修剪后的条目长度仍然包含隐私信息，它包含着在用户的答案中常用的条目的占比，与LDP冲突。解决方案：修剪后继续填充冗余。</p>
+<h3 id="最优化"><a href="#最优化" class="headerlink" title="最优化"></a>最优化</h3><p>LDPMiner-SH的第二阶段有一个最优化的过程，由于两个阶段采用的都是SH，当两个阶段用户选择相同的条目时，可以进行优化。优化发生条件  </p>
+<ol>
+<li><p>阶段一种用户i选择条目v  </p>
+</li>
+<li><p>v被选为前k max个heavy hitter  </p>
+</li>
+<li><p>阶段二中v仍然在取值集合中q且用户i仍然选择v上传  </p>
+</li>
+</ol>
+<p>可以观察到1、3中有重复部分，由于阶段一中数据上传仅仅是为了筛选出候选，所以1中的上传华为的隐私预算就被浪费了，为了避免这样，使用了一个特殊的干扰技巧。在第一阶段同时将v和干扰后的v上传，然后输出另一个干扰过的版本，这样就解决了隐私预算浪费的问题，也提升了v的第二个干扰版本的准确性。除此之外，LDPMiner还在两个阶段随机选择条目时对其进行连续哈希，所以每个用户都倾向于在两个阶段上传相同的条目。  </p>
+<p>最终数据收集者得到了频率估计，将其转化成无偏的频率估计，选出前k个heavy hitter</p>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>通信花费O(log(d)+k),对每个用户O(k+l)</p>
+<h1 id="实验评估"><a href="#实验评估" class="headerlink" title="实验评估"></a>实验评估</h1><h2 id="性能结果"><a href="#性能结果" class="headerlink" title="性能结果"></a>性能结果</h2><p>n较小时LDPMiner性能一般，但仍然比较准确，SH和RAPPOR性能更差；n比较大时，LDPMiner预测很准确，基本可以预测准确所有heavy hitter，但频率上有差距，传统方法性能更差；在采用拉普拉斯生成的数据中，由于区分性更好，LDPMiner预测非常准确，传统方法也有提升。</p>
+<h2 id="两阶段隐私预算划分的结论"><a href="#两阶段隐私预算划分的结论" class="headerlink" title="两阶段隐私预算划分的结论"></a>两阶段隐私预算划分的结论</h2><p>如果第一阶段隐私预算太少，可能会导致候选集过大，会增加第二阶段的隐私预算；如果第二结算的隐私预算太少，估计出来的频率会不准确。均分时相应效果最好。</p>
+<h2 id="真实数据实验，隐私预算的影响"><a href="#真实数据实验，隐私预算的影响" class="headerlink" title="真实数据实验，隐私预算的影响"></a>真实数据实验，隐私预算的影响</h2><ul>
+<li>对所有算法，隐私预算越高，相关错误越少</li>
+</ul>
+<ul>
+<li>同等条件下，LDPMiner性能更好</li>
+</ul>
+<ul>
+<li>在可忍受更高的通信花费的前提下，LDPMiner-RAPPOR比LDPMiner-SH性能更好，同理sampling RAPPOR比sampling SH也要好一点。以上结论在参数为NDCG时也成立。<h2 id="k的影响"><a href="#k的影响" class="headerlink" title="k的影响"></a>k的影响</h2></li>
+</ul>
+<ul>
+<li>k增加时所有方法的性能都会变差</li>
+</ul>
+<ul>
+<li>k很小时LDPMiner的性能优势很小</li>
+</ul>
+<ul>
+<li>当k很大时，LDPMiner方法relative errors性能不如传统方法，但NDCG性能仍然要好，这说明随着k增大，虽然LDPMiner的频率估计性能变差，但仍然很好的保留了heavy hitter之间的相对顺序<br>#相关工作</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2018/06/30/2018-06-30-2016-ccs-heavy-hitter-estimation-over-set-valued-data-with-local-differential-privacye8aebae69687e7ac94e8aeb0/" title="LDPMiner应用于Heavy hitter的挖掘-论文笔记" target="_blank" rel="external">http://yoursite.com/2018/06/30/2018-06-30-2016-ccs-heavy-hitter-estimation-over-set-valued-data-with-local-differential-privacye8aebae69687e7ac94e8aeb0/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">CCJ</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom="">
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/11/28/r720-hackintosh/" title="联想R720 黑苹果13.4安装实录"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2018/04/08/2018-04-08-2018e5b9b4e58c97e982aee7bd91e7a094e999a2e69cbae8af95e79c9fe9a298/" title="2018年北邮网研院机试真题"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan">
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan">
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

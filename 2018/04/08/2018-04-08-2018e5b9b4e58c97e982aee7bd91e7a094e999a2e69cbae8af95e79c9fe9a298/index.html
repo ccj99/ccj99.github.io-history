@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000">
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top">
+  
+  
+  <title>2018年北邮网研院机试真题 | Hexo</title>
+  <meta name="description" content="2018北邮网研院机试题目与心得 这次网研院的机试，难度出乎意料的低，算是意外情况，所以难度方面不足以作参考，就只谈谈作为一个跨考生应对意外情况的一些技巧吧。 第一题给出n行商品的单价和数量，单价是小数，求所有物品总花费，保留两位小数。 这个题非常简单，没什么可说的，注意如何输出两位小数就是了，我临场就忘记了，现查的书。所以还是看一眼这种东西，或者带足够的书。 第二题输出一个数列中V字形三元组的个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018年北邮网研院机试真题">
+<meta property="og:url" content="http://yoursite.com/2018/04/08/2018-04-08-2018e5b9b4e58c97e982aee7bd91e7a094e999a2e69cbae8af95e79c9fe9a298/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="2018北邮网研院机试题目与心得 这次网研院的机试，难度出乎意料的低，算是意外情况，所以难度方面不足以作参考，就只谈谈作为一个跨考生应对意外情况的一些技巧吧。 第一题给出n行商品的单价和数量，单价是小数，求所有物品总花费，保留两位小数。 这个题非常简单，没什么可说的，注意如何输出两位小数就是了，我临场就忘记了，现查的书。所以还是看一眼这种东西，或者带足够的书。 第二题输出一个数列中V字形三元组的个">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-02-18T02:25:34.718Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018年北邮网研院机试真题">
+<meta name="twitter:description" content="2018北邮网研院机试题目与心得 这次网研院的机试，难度出乎意料的低，算是意外情况，所以难度方面不足以作参考，就只谈谈作为一个跨考生应对意外情况的一些技巧吧。 第一题给出n行商品的单价和数量，单价是小数，求所有物品总花费，保留两位小数。 这个题非常简单，没什么可说的，注意如何输出两位小数就是了，我临场就忘记了，现查的书。所以还是看一眼这种东西，或者带足够的书。 第二题输出一个数列中V字形三元组的个">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://yoursite.com/2018/04/08/2018-04-08-2018e5b9b4e58c97e982aee7bd91e7a094e999a2e69cbae8af95e79c9fe9a298/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+  
+  
+  
+</head>
+
+
+<body class="main-center theme-blue" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">CCJ</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">Web Developer &amp; Designer</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shenzhen, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="Search">
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="Type something..." x-webkit-speech="">
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope="" itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">Home</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">Archives</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">Categories</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">Tags</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">Repository</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">About</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope="" itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">Board</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流讨论!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><span class="category-list-count">2</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/Tensorflow/">Tensorflow</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/">Ubuntu</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Ubuntu/网络配置/">网络配置</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/差分隐私/">差分隐私</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/网络配置/">网络配置</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/考研/">考研</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+
+    
+      
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Archive</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">June 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/网络配置/">网络配置</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/12/16/2018-12-16-e58c97e982aee68993e980a0e5858de799bbe5bd95e5aebde5b8a6padavane8b7afe794b1e599a8/" class="title">北邮打造免登录宽带Padavan路由器</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-12-15T21:39:42.000Z" itemprop="datePublished">2018-12-16</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/网络配置/">网络配置</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/11/28/r720-hackintosh/" class="title">联想R720 黑苹果13.4安装实录</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-11-27T21:39:42.000Z" itemprop="datePublished">2018-11-28</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/差分隐私/">差分隐私</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/06/30/2018-06-30-2016-ccs-heavy-hitter-estimation-over-set-valued-data-with-local-differential-privacye8aebae69687e7ac94e8aeb0/" class="title">LDPMiner应用于Heavy hitter的挖掘-论文笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-06-30T01:15:39.000Z" itemprop="datePublished">2018-06-30</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/考研/">考研</a>
+              </p>
+              <p class="item-title">
+                <a href="/2018/04/08/2018-04-08-2018e5b9b4e58c97e982aee7bd91e7a094e999a2e69cbae8af95e79c9fe9a298/" class="title">2018年北邮网研院机试真题</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2018-04-07T19:40:19.000Z" itemprop="datePublished">2018-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/Python/">Python</a><i class="icon icon-angle-right"></i><a class="category-link" href="/categories/Python/Tensorflow/">Tensorflow</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/07/23/2017-07-23-mactfgpu/" class="title">黑苹果 Hackintosh macOS Sierra 10.12.6 安装 CUDA cuDNN Tensorflow-gpu</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-07-22T17:19:21.000Z" itemprop="datePublished">2017-07-23</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-2018-04-08-2018e5b9b4e58c97e982aee7bd91e7a094e999a2e69cbae8af95e79c9fe9a298" class="article article-type-post" itemscope="" itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2018年北邮网研院机试真题
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2018/04/08/2018-04-08-2018e5b9b4e58c97e982aee7bd91e7a094e999a2e69cbae8af95e79c9fe9a298/" class="article-date">
+	  <time datetime="2018-04-07T19:40:19.000Z" itemprop="datePublished">2018-04-08</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="icon icon-folder"></i>
+    <a class="article-category-link" href="/categories/考研/">考研</a>
+  </span>
+
+        
+
+        
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2018/04/08/2018-04-08-2018e5b9b4e58c97e982aee7bd91e7a094e999a2e69cbae8af95e79c9fe9a298/#comments" class="article-comment-link">Comments</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>2018北邮网研院机试题目与心得</p>
+<p>这次网研院的机试，难度出乎意料的低，算是意外情况，所以难度方面不足以作参考，就只谈谈作为一个跨考生应对意外情况的一些技巧吧。</p>
+<h3 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h3><p>给出n行商品的单价和数量，单价是小数，求所有物品总花费，保留两位小数。</p>
+<p>这个题非常简单，没什么可说的，注意如何输出两位小数就是了，我临场就忘记了，现查的书。所以还是看一眼这种东西，或者带足够的书。</p>
+<h3 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h3><p>输出一个数列中V字形三元组的个数，即存在三元组（a，b，c）有 a&gt;b &amp;&amp; b&lt;c不要求a,b,c相邻。</p>
+<p>这种题首先看数量级，即数列的长度，如果长度不长，直接写三重for循环，遍历出来非常简单。</p>
+<pre><code>&lt;code&gt;for(int i = 0; i &lt; n - 2 i ++){
+    for(int j = i + 1; j &lt; n - 1; j ++){
+        for(int k = j +1; k &lt; n; k ++) {
+            if(nums[i] &gt; nums[j] &amp;&amp; nums[j] &lt; nums[k]) res++;
+        }
+    }
+}
+&lt;/code&gt;
+</code></pre><p>侥幸这次机试数量级很小，只有几百，可以直接循环，过了。</p>
+<h3 id="第三题"><a href="#第三题" class="headerlink" title="第三题"></a>第三题</h3><p>输入四个数字a,b,c,d，若等式a#b#c#d=24成立（#为加减乘除中的任意一种，可以重复出现），那么成该数组满足24点，输出YES，否则输出NO。（计算为实型）</p>
+<p>首先，三个运算符各有四种可能，共43 =64种组合，64这个数字不大也不小，手写判定太麻烦也太啰嗦，如果不用手写64种可能，那么考虑三重for循环得到64个式子，for循环index是数字，所以只能做一个数字对运算符的映射，此时的运算符类型为char，若要对其加上数字进行运算，还要进行运算式的识别计算，其中涉及到优先级的判定，除数不为0等，王道机试指南上有源码，不再赘述。相对于手写64个判定条件，运算式的识别更加麻烦，而且程序长，容易出错，而且在实数的条件下，就更加麻烦了。<br>所以我最终选择手写64个判定条件的方式，但是不同于群里的64if大佬，我就写了一个if。</p>
+<pre><code>&lt;code&gt;if(a + b + c + d == 24 || a + b + c - d == 24 || ...)
+    printf(&quot;Yes&quot;);
+&lt;/code&gt;
+</code></pre><p>提交后又发现错误，原因是我第一次的a,b,c,d都是整形，在除法运算时无法得到正确的结果（例如3/2应该按1.5来计算，而整形的3/2实际结果是1，所以应该将a,b,c,d全部变为double类型。<br>由于对实型数据输入不熟练，我的处理方法是先输入整形数a1,b1,c1,d1，再转换为double类型，依据就是24点没有用小数玩的。这么说非常牵强和取巧，但是就是想传递一个灵活的思想，当碰到不会的东西的时候，考场上灵活解决很好用。当然再退一步，真的不会也可以写一个test程序跑一下。</p>
+<h3 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h3><p>给定n个元件，每个元件i都有一个最佳温度范围[Ri, Ji]，所有原件在最佳温度范围内的性能为y，温度小于Ri性能为x，温度大于Ji性能为z，求使所有原件性能总和最大的温度T。(0&lt;Ri&lt;Ji&lt;109 ,0&lt;n&lt;20000)</p>
+<p>这个题目是求最佳状态，貌似是动态规划的问题，但是我动态规划掌握不好，没能找出状态这些东西，所以没做出来，就还是用笨办法试试。<br>对每个温度进行遍历，分别求出该温度下的性能总和，存起来比较大小，得出最大值和温度。这时候是一个两层循环，外层最多109 次，内层最多20000次，共2*1013 次，数量级庞大，提交代码以后超时，应该想办法精简。<br>思考可得，显然最佳温度肯定在边界上取得，也就是在Ri或者Ji上，这样就把第一层循环缩小到了40000次，总共8x108 次，提交通过。</p>
+<pre><code>&lt;code&gt;int R[n], J[n];
+int max = 0;
+for(int i = 0; i &lt; n; i ++) {
+    int sum = 0;
+    for(int j = 0; j &lt; n; j ++) {
+        if(R[j] &gt; R[i])  sum += x;
+        else if(J[j] &lt; R[i]) sum += z;
+        else sum += y;
+    }
+    if(sum &gt; max) max = sum;
+}
+&lt;/code&gt;
+</code></pre>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://yoursite.com/2018/04/08/2018-04-08-2018e5b9b4e58c97e982aee7bd91e7a094e999a2e69cbae8af95e79c9fe9a298/" title="2018年北邮网研院机试真题" target="_blank" rel="external">http://yoursite.com/2018/04/08/2018-04-08-2018e5b9b4e58c97e982aee7bd91e7a094e999a2e69cbae8af95e79c9fe9a298/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">CCJ</span><small class="ml-1x">Web Developer &amp; Designer</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom="">
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2018/06/30/2018-06-30-2016-ccs-heavy-hitter-estimation-over-set-valued-data-with-local-differential-privacye8aebae69687e7ac94e8aeb0/" title="LDPMiner应用于Heavy hitter的挖掘-论文笔记"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;Newer</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2017/07/23/2017-07-23-mactfgpu/" title="黑苹果 Hackintosh macOS Sierra 10.12.6 安装 CUDA cuDNN Tensorflow-gpu"><span>Older&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>$</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>Maybe you could buy me a cup of coffee.</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="Scan Qrcode" title="Scan">
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open alipay app scan this qrcode, buy me a coffee!</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="Scan Qrcode" title="Scan">
+              </div>
+              <p class="text-muted mv">Scan this qrcode</p>
+              <p class="text-grey">Open wechat app scan this qrcode, buy me a coffee!</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> alipay</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> wechat payment</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope="" itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle="tooltip" data-placement="top"><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle="tooltip" data-placement="top"><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle="tooltip" data-placement="top"><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle="tooltip" data-placement="top"><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle="tooltip" data-placement="top"><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.min.js"></script>
+<script src="/js/application.js"></script>
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+
+
+
+
+   
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
