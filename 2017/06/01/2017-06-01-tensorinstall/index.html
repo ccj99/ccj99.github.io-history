@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="CCJ的个人博客">
 <meta property="og:description" content="安装Nvidia显卡驱动 在Nvidia官网找到对应自己系统和显卡版本的.run安装程序并下载   卸载nouveaus显卡驱动：执行命令mv /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nouveau/nouveau.ko /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nou">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-02-18T02:25:41.178Z">
+<meta property="og:updated_time" content="2019-02-20T11:45:41.219Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ubuntu 17.04 下安装 TensorFlow 1.1 gpu 全记录">
 <meta name="twitter:description" content="安装Nvidia显卡驱动 在Nvidia官网找到对应自己系统和显卡版本的.run安装程序并下载   卸载nouveaus显卡驱动：执行命令mv /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nouveau/nouveau.ko /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nou">
@@ -297,7 +297,7 @@
 <li>在Nvidia官网找到对应自己系统和显卡版本的.run安装程序并下载</li>
 </ul>
 <ul>
-<li>卸载nouveaus显卡驱动：<br>执行命令<code>mv /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nouveau/nouveau.ko /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nouveau/nouveau.ko.org</code>完成显卡驱动的备份和删除，再重新加载一下 <code>update-initramfs -u</code>。成功后重启会发现分辨率变得异常等无显卡驱动的常见情形</li>
+<li>卸载nouveaus显卡驱动：<br>执行命令<br><code>mv /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nouveau/nouveau.ko /lib/modules/3.0.0-12-generic/kernel/drivers/gpu/drm/nouveau/nouveau.ko.org</code><br>完成显卡驱动的备份和删除，再重新加载一下<br><code>update-initramfs -u</code><br>成功后重启会发现分辨率变得异常等无显卡驱动的常见情形</li>
 </ul>
 <ul>
 <li>nouveaus显卡驱动卸载完成后，Ctrl+Alt+F1进入命令行模式并登陆root账户</li>
